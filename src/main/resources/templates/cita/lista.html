@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Listado de Citas - Wellness</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ======= ESTILOS GLOBALES ======= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: #F9F9F9;
+            color: #333333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+
+        /* ======= CONTENEDOR ======= */
+        .container {
+            width: 95%;
+            max-width: 1000px;
+            background-color: #FFFFFF;
+            border-radius: 15px;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+            padding: 30px 25px;
+            text-align: center;
+        }
+
+        /* ======= ENCABEZADO ======= */
+        h2 {
+            font-size: 2rem;
+            color: #00796B;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ======= TABLA ======= */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        thead {
+            background-color: #00796B;
+            color: #FFFFFF;
+        }
+
+        th, td {
+            padding: 15px 12px;
+            text-align: center;
+            font-size: 0.95rem;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #F2F2F2;
+        }
+
+        tbody tr:hover {
+            background-color: #E0F2F1;
+            transition: background-color 0.3s;
+        }
+
+        th {
+            text-transform: uppercase;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* ======= BOTONES ======= */
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .btn-editar {
+            background-color: #4DB6AC;
+            color: white;
+        }
+
+        .btn-editar:hover {
+            background-color: #00796B;
+        }
+
+        .btn-eliminar {
+            background-color: #e57373;
+            color: white;
+        }
+
+        .btn-eliminar:hover {
+            background-color: #c62828;
+        }
+
+        .btn-nueva {
+            background-color: #00796B;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 700;
+            display: inline-block;
+            margin-top: 15px;
+            transition: all 0.3s;
+        }
+
+        .btn-nueva:hover {
+            background-color: #004D40;
+        }
+
+        .back-btn {
+            margin-top: 25px;
+            background: transparent;
+            color: #00796B;
+            border: 2px solid #00796B;
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background-color: #00796B;
+            color: white;
+        }
+
+        /* ======= RESPONSIVO ======= */
+        @media (max-width: 768px) {
+            table {
+                font-size: 0.85rem;
+            }
+
+            th, td {
+                padding: 10px 8px;
+            }
+
+            h2 {
+                font-size: 1.6rem;
+            }
+
+            .btn, .btn-nueva, .back-btn {
+                font-size: 0.85rem;
+                padding: 8px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Listado de Citas</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Cliente</th>
+                <th>Profesional</th>
+                <th>Servicio</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="cita : ${citas}">
+                <td th:text="${cita.idCita}"></td>
+                <td th:text="${cita.usuario.nombre}"></td>
+                <td th:text="${cita.profesional.nombre}"></td>
+                <td th:text="${cita.servicio.nombre}"></td>
+                <td th:text="${#dates.format(cita.fechaCita, 'dd/MM/yyyy')}"></td>
+                <td th:text="${#dates.format(cita.horaCita, 'HH:mm')}"></td>
+                <td th:text="${cita.estado}"></td>
+                <td>
+                    <a th:href="@{'/citas/editar/' + ${cita.idCita}}" class="btn btn-editar">Editar</a>
+                    <a th:href="@{'/citas/eliminar/' + ${cita.idCita}}"
+                       class="btn btn-eliminar"
+                       onclick="return confirm('¿Seguro que deseas eliminar esta cita?');">
+                        Eliminar
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a th:href="@{/citas/nueva}" class="btn-nueva">+ Registrar Nueva Cita</a>
+
+    <br>
+    <button class="back-btn" onclick="location.href='/'">⬅ Volver al inicio</button>
+</div>
+
+</body>
+</html>

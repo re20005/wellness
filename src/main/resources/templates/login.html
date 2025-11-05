@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Wellness Barbería</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(to right, #74ebd5, #ACB6E5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .header {
+            font-size: 36px;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
+
+        .login-box {
+            background-color: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            width: 320px;
+            text-align: center;
+        }
+
+        .login-box h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .login-box input[type="email"],
+        .login-box input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .login-box button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-box button:hover {
+            background-color: #0056b3;
+        }
+
+        .error {
+            color: red;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .register-link {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .register-link a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">WELLNESS</div>
+
+    <div class="login-box">
+        <h2>Iniciar Sesión</h2>
+
+        <div class="error" id="errorMsg"></div>
+
+       <!-- <form id="loginForm">
+            <input type="email" id="email" placeholder="Correo electrónico" required />
+            <input type="password" id="password" placeholder="Contraseña" required />
+            <button type="submit">Ingresar</button>
+        </form> -->
+        <form action="/login" method="post">
+            <input type="email" name="username" placeholder="Correo" required />
+            <input type="password" name="password" placeholder="Contraseña" required />
+            <button type="submit">Ingresar</button>
+        </form>
+
+        <div class="register-link">
+            ¿No tienes cuenta? <a th:href="@{/register}">Regístrate aquí</a>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById("loginForm");
+        const errorDiv = document.getElementById("errorMsg");
+
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            try {
+                const res = await fetch("/api/auth/login", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email, password })
+                });
+
+                if (res.ok) {
+                    const data = await res.json();
+                    console.log("Login correcto:", data);
+                    window.location.href = "/home"; // Redirige al home
+                } else {
+                    const errData = await res.json();
+                    errorDiv.textContent = errData.message || "Usuario o contraseña incorrectos";
+                }
+            } catch (err) {
+                errorDiv.textContent = "Error en la conexión con el servidor";
+            }
+        });
+    </script>
+</body>
+</html>

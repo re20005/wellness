@@ -1,0 +1,39 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:16
+    container_name: wellness_db
+    environment:
+      POSTGRES_USER: wellnessuser
+      POSTGRES_PASSWORD: wellnesspass
+      POSTGRES_DB: wellnessdb
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  backend:
+    build: .
+    container_name: wellness_backend
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_NAME: wellnessdb
+      DB_USER: wellnessuser
+      DB_PASSWORD: wellnesspass
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+
+# frontend:
+#   build: ./frontend
+#   container_name: wellness_frontend
+#   ports:
+#     - "4200:80"
+#   depends_on:
+#     - backend
+
+volumes:
+  postgres_data:

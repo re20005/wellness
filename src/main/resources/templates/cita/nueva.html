@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrar Nueva Cita - Wellness</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ======= ESTILOS GLOBALES ======= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: #F9F9F9;
+            color: #333333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        /* ======= CONTENEDOR ======= */
+        .form-container {
+            width: 95%;
+            max-width: 500px;
+            background-color: #FFFFFF;
+            border-radius: 15px;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+            padding: 30px 25px;
+            text-align: center;
+        }
+
+        /* ======= TÍTULO ======= */
+        h1 {
+            color: #00796B;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ======= FORMULARIO ======= */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            text-align: left;
+        }
+
+        label {
+            font-weight: 600;
+            color: #333333;
+            font-size: 0.95rem;
+        }
+
+        input, select {
+            padding: 10px 12px;
+            border: 2px solid #E0E0E0;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, select:focus {
+            border-color: #4DB6AC;
+        }
+
+        /* ======= BOTONES ======= */
+        .btn-guardar {
+            background-color: #00796B;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .btn-guardar:hover {
+            background-color: #004D40;
+        }
+
+        .link-volver {
+            display: inline-block;
+            margin-top: 20px;
+            color: #00796B;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .link-volver:hover {
+            color: #004D40;
+        }
+
+        .back-btn {
+            margin-top: 20px;
+            background: transparent;
+            color: #00796B;
+            border: 2px solid #00796B;
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background-color: #00796B;
+            color: white;
+        }
+
+        /* ======= RESPONSIVO ======= */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            input, select {
+                font-size: 0.9rem;
+                padding: 9px;
+            }
+
+            .btn-guardar, .back-btn {
+                font-size: 0.9rem;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h1>Registrar Nueva Cita</h1>
+        
+        <form>
+            <div>
+                <label>Cliente:</label>
+                <input type="text" placeholder="Nombre del cliente">
+            </div>
+
+            <div>
+                <label>Profesional:</label>
+                <input type="text" placeholder="Nombre del profesional">
+            </div>
+
+            <div>
+                <label>Servicio:</label>
+                <input type="text" placeholder="Tipo de servicio">
+            </div>
+
+            <div>
+                <label>Fecha:</label>
+                <input type="date">
+            </div>
+
+            <div>
+                <label>Hora:</label>
+                <input type="time">
+            </div>
+
+            <button type="submit" class="btn-guardar">💾 Guardar Cita</button>
+        </form>
+
+        <a th:href="@{/citas}" class="link-volver">← Volver al listado</a>
+        <br>
+        <button class="back-btn" onclick="location.href='/'">⬅ Volver al inicio</button>
+    </div>
+
+</body>
+</html>

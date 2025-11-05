@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wellness</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(to bottom, #f9f9f9, #e0f7fa);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            padding: 40px 20px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            color: #00796b;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: #555;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            width: 90%;
+            max-width: 1000px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background-color: #ffffff;
+            padding: 30px 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(0,0,0,0.2);
+        }
+
+        .card h2 {
+            color: #00796b;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .card p {
+            color: #555;
+        }
+
+        .logout {
+            margin-top: 50px;
+            padding: 12px 30px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .logout:hover {
+            background-color: #d32f2f;
+        }
+
+        @media (max-width: 500px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+            .card h2 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Wellness</h1>
+        <p>Bienvenido a tu centro de citas y bienestar</p>
+    </header>
+
+    <div class="container">
+        <div class="card" onclick="location.href='/citas'">
+            <h2>Mis Citas</h2>
+            <p>Revisa tus próximas citas agendadas.</p>
+        </div>
+
+        <div class="card" onclick="location.href='/reprogramar'">
+            <h2>Reprogramar Citas</h2>
+            <p>Cambia la fecha y hora de tus citas fácilmente.</p>
+        </div>
+
+        <div class="card" onclick="location.href='/eliminar'">
+            <h2>Eliminar Citas</h2>
+            <p>Elimina citas que ya no necesites.</p>
+        </div>
+
+        <div class="card" onclick="location.href='/historial'">
+            <h2>Historial de Citas</h2>
+            <p>Consulta todas tus citas pasadas.</p>
+        </div>
+
+        <div class="card" onclick="location.href='/nueva'">
+            <h2>Agendar Citas</h2>
+            <p>Programa nuevas citas según tu disponibilidad.</p>
+        </div>
+    </div>
+
+    <button class="logout" onclick="location.href='/login'">Cerrar Sesión</button>
+
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Eliminar Cita | Wellness</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* ---------- ESTILOS BASE ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(to bottom, #F9F9F9, #E0F7FA);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
+            padding: 40px 0;
+        }
+
+        /* ---------- TABLA ---------- */
+        .table-container {
+            width: 90%;
+            max-width: 950px;
+            background-color: #FFFFFF;
+            border-radius: 15px;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            margin-bottom: 40px;
+            transition: transform 0.3s ease;
+        }
+
+        .table-container:hover {
+            transform: scale(1.01);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background-color: #00796B;
+            color: #FFFFFF;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: center;
+        }
+
+        th {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #F2F2F2;
+        }
+
+        tbody tr:hover {
+            background-color: #E0F2F1;
+            transition: 0.3s;
+        }
+
+        /* ---------- CONTENEDOR PRINCIPAL ---------- */
+        .card {
+            background-color: #ffffff;
+            padding: 40px 50px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 90%;
+            max-width: 450px;
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card h1 {
+            color: #00796B;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+
+        .card p {
+            color: #555;
+            margin-bottom: 30px;
+            font-size: 1rem;
+        }
+
+        /* ---------- BOTONES ---------- */
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-delete {
+            background-color: #E53935;
+            color: white;
+        }
+
+        .btn-delete:hover {
+            background-color: #C62828;
+            box-shadow: 0 6px 12px rgba(229, 57, 53, 0.3);
+        }
+
+        .btn-cancel {
+            background-color: #00796B;
+            color: white;
+            margin-left: 10px;
+        }
+
+        .btn-cancel:hover {
+            background-color: #004D40;
+            box-shadow: 0 6px 12px rgba(0, 121, 107, 0.3);
+        }
+
+        .btn-home {
+            margin-top: 25px;
+            background-color: #4DB6AC;
+            color: #fff;
+        }
+
+        .btn-home:hover {
+            background-color: #26A69A;
+            box-shadow: 0 6px 12px rgba(77, 182, 172, 0.3);
+        }
+
+        /* ---------- PIE DE PÁGINA ---------- */
+        footer {
+            margin-top: 25px;
+            font-size: 0.9rem;
+            color: #888;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- TABLA DE CITAS -->
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th>Especialista</th>
+                    <th>Servicio</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>15/10/2025</td>
+                    <td>10:00 AM</td>
+                    <td>David Armando</td>
+                    <td>Corte varón</td>
+                    <td>Completada</td>
+                </tr>
+                <tr>
+                    <td>08/09/2025</td>
+                    <td>02:30 PM</td>
+                    <td>José Martínez</td>
+                    <td>Corte varón</td>
+                    <td>Cancelada</td>
+                </tr>
+                <tr>
+                    <td>25/08/2025</td>
+                    <td>09:00 AM</td>
+                    <td>Elías Gómez</td>
+                    <td>Corte de barba</td>
+                    <td>Completada</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- SECCIÓN DE CONFIRMACIÓN -->
+    <div class="card">
+        <h1>Eliminar Cita</h1>
+        <p>¿Está seguro de que desea eliminar esta cita? Esta acción no se puede deshacer.</p>
+
+        <div>
+            <button class="btn btn-delete">Eliminar</button>
+            <a th:href="@{/citas}" class="btn btn-cancel">Cancelar</a>
+        </div>
+
+        <button class="btn btn-home" onclick="location.href='/'">⬅ Volver al inicio</button>
+
+        <footer>Wellness © 2025</footer>
+    </div>
+</body>
+</html>

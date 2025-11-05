@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Reprogramar Cita</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #F9F9F9;
+            color: #333333;
+            text-align: center;
+            padding: 40px;
+        }
+
+        h1 {
+            color: #00796B;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        form {
+            background-color: #FFFFFF;
+            display: inline-block;
+            padding: 30px 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            min-width: 300px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input[type="date"],
+        input[type="time"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #CCC;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        button {
+            background-color: #00796B;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-size: 15px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #004D40;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            color: #00796B;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            color: #004D40;
+        }
+
+        .back-btn {
+            margin-top: 30px;
+            background-color: #4DB6AC;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .back-btn:hover {
+            background-color: #00796B;
+        }
+
+          /* --- TABLA --- */
+        .table-container {
+            width: 95%;
+            max-width: 950px;
+            background-color: #FFFFFF;
+            border-radius: 15px;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .table-container:hover {
+            transform: scale(1.01);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background-color: #00796B;
+            color: #FFFFFF;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: center;
+        }
+
+        th {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #F2F2F2;
+        }
+
+        tbody tr:hover {
+            background-color: #E0F2F1;
+            transition: 0.3s;
+        }
+    </style>
+</head>
+<body>
+    <h1>Reprogramar Cita</h1>
+
+<div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th>Especialista</th>
+                    <th>Servicio</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>15/10/2025</td>
+                    <td>10:00 AM</td>
+                    <td>David armando</td>
+                    <td>Corte varon</td>
+                    <td>Completada</td>
+                </tr>
+                <tr>
+                    <td>08/09/2025</td>
+                    <td>02:30 PM</td>
+                    <td>Jose Martinez</td>
+                    <td>Corte Varon</td>
+                    <td>Cancelada</td>
+                </tr>
+                <tr>
+                    <td>25/08/2025</td>
+                    <td>09:00 AM</td>
+                    <td>Elias Gómez</td>
+                    <td>Corte de barba</td>
+                    <td>Completada</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <br>
+
+    <p>Seleccione una nueva fecha y hora para su cita.</p>
+
+    <form>
+        <label for="fecha">Nueva Fecha:</label>
+        <input type="date" id="fecha" name="fecha">
+
+        <label for="hora">Nueva Hora:</label>
+        <input type="time" id="hora" name="hora">
+
+        <button type="submit">Guardar Cambios</button>
+    </form>
+
+    <br>
+    <a th:href="@{/citas}">Volver al listado</a>
+
+    <br>
+    <button class="back-btn" onclick="location.href='/'">⬅ Volver al inicio</button>
+</body>
+</html>
